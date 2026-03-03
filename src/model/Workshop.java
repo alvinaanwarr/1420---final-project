@@ -20,7 +20,7 @@ public class Workshop extends Event {
         return topic;
     }
 
-    @Override
+    @Override // Returns the specific type of this event so the system knows it is a Workshop
     public String getEventType() {
         return "Workshop";
     }
