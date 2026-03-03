@@ -10,7 +10,8 @@ public class Workshop extends Event {
     private String topic;
 
     public Workshop(String eventId, String title, LocalDateTime dateTime,
-                    String location, int capacity, String topic) {
+                    String location, int capacity, String topic) {  // adds its own specific field, which is topic
+
         super(eventId, title, dateTime, location, capacity);
         this.topic = topic;
     }
