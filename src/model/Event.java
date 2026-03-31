@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 public abstract class Event {
 
     private final String eventId;
-    private String title;
-    private LocalDateTime dateTime;
-    private String location;
-    private int capacity;
+    private final String title;
+    private final LocalDateTime dateTime;
+    private final String location;
+    private final int capacity;
     private EventStatus status;
 
     public Event(String eventId, String title, LocalDateTime dateTime,
