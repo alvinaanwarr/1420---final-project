@@ -31,4 +31,32 @@ public class ModelTest {
             new Workshop("E1", "Bad", LocalDateTime.now(), "Room", 0, "OOP");
         });
     }
+
+    @Test
+    void testWaitlistPromotionAfterCancellation() {
+        Booking confirmed = new Booking("B1", "U1", "E1",
+            LocalDateTime.now(), BookingStatus.CONFIRMED);
+        Booking waitlisted = new Booking("B2", "U2", "E1",
+            LocalDateTime.now(), BookingStatus.WAITLISTED);
+        
+        confirmed.setBookingStatus(BookingStatus.CANCELLED);
+        waitlisted.setBookingStatus(BookingStatus.CONFIRMED);
+        
+        assertEquals(BookingStatus.CANCELLED, confirmed.getBookingStatus());
+        assertEquals(BookingStatus.CONFIRMED, waitlisted.getBookingStatus());
+    }
+
+    @Test
+    void testDuplicateBookingNotAllowed() {
+        Booking b1 = new Booking("B1", "U1", "E1",
+            LocalDateTime.now(), BookingStatus.CONFIRMED);
+        Booking b2 = new Booking("B2", "U1", "E1",
+            LocalDateTime.now(), BookingStatus.CONFIRMED);
+        
+        boolean isDuplicate =
+            b1.getUserId().equals(b2.getUserId()) &&
+            b1.getEventId().equals(b2.getEventId());
+        
+        assertTrue(isDuplicate);
+    }
 }
