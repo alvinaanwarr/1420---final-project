@@ -77,7 +77,15 @@ The system uses predefined datasets:
 - Waitlist order is determined by booking timestamp
 
 #### Data Set Error
-An error occured while attempting to incorporate the data sets, in the EventService, BookingService, and UserService codes. The line <private static final String FILE = "scr/DataSet/events.csv"; > was added (same for booking and user, change to /booking.csv and /user.csv).
+An error occurred while incorporating the dataset files within the EventService, BookingService, and UserService 
+classes. To resolve this, the following line was added (with corresponding changes for each file):
+
+private static final String FILE = "src/DataSet/events.csv";
+(similarly updated to /bookings.csv and /users.csv as needed)
+
+The issue was caused by incorrect file paths in the code. The program was referencing the wrong dataset locations, 
+which prevented the GUI from loading data properly. Updating the file paths ensured that the datasets were 
+correctly accessed and displayed in the application.
 
 
 ## JUnit Testing
@@ -105,7 +113,7 @@ This project contains a JUnit 5 test suite covering core system behaviour.
 
 
 ## How to Run the program
-Using IntelliJ IDEA
+Using IntelliJ IDEA:
 1. Open the project in IntelliJ
 2. Navigate to: **src/campusbooking/Launcher.java**
 3. Run the Main class
@@ -126,40 +134,40 @@ Using IntelliJ IDEA
 
 ## Project Structure
     src/
-      campusbooking/
-        Launcher.java
-        MainFrame.java
-        gui/
-          BookingPanel.java
-          EventPanel.java
-          UserPanel.java
-          WaitlistPanel.java
-
-      DataSet/
-        users.csv
-        events.csv
-        bookings.csv
-
-      model/
-        Booking.java
-        BookingStatus.java
-        Concert.java
-        Event.java
-        EventStatus.java
-        Guest.java
-        Seminar.java
-        Staff.java
-        Student.java
-        User.java
-        Workshop.java
-
-      service/
-        BookingService.java
-        EventService.java
-        UserService.java
-
-      test/
-        BookingServiceTest.java
+        DataSet/
+            users.csv
+            events.csv
+            bookings.csv
+        
+        campusbooking/
+            Launcher.java
+            MainFrame.java
+            gui/
+              BookingPanel.java
+              EventPanel.java
+              UserPanel.java
+              WaitlistPanel.java
+        
+        model/
+            Booking.java
+            BookingStatus.java
+            Concert.java
+            Event.java
+            EventStatus.java
+            Guest.java
+            Seminar.java
+            Staff.java
+            Student.java
+            User.java
+            Workshop.java
+        
+        service/
+            BookingService.java
+            EventService.java
+            UserService.java
+            
+        test/
+            BookingServiceTest.java
 
 
 ## GitHub
