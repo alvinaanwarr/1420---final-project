@@ -9,13 +9,30 @@ The project demonstrates strong object-oriented design principles, including inh
 architecture, and provides an interactive Swing-based graphical user interface (GUI) for system interaction.
 
 
-## Team Members
-- Eman Siddiqui
-- Alvina Anwar
-- Rinad Abu Zaid
-- Hana Rave
-- Lana Ghonem
-- Sara Zevar
+## Team Members & Contributions
+
+- **Eman Siddiqui**  
+	Phase 1: Booking workflow implementation  
+	Phase 2: Search functionality (service layer) and dataset integration  
+
+- **Alvina Anwar**  
+	Phase 1: GUI panel implementation  
+	Phase 2: Data persistence across runs (file reading/writing)  
+
+- **Rinad Abu Zaid**  
+	Phase 1: Booking model (Confirmed, Cancelled, Waitlisted)  
+	Phase 2: JUnit test development  
+
+- **Hana Rave**  
+	Phase 1: User management (Student, Staff, Guest)  
+	Phase 2: Dataset integration and README documentation  
+
+- **Lana Ghonem**  
+	Phase 1: Event management  
+	Phase 2: JUnit test development  
+
+- **Sara Zevar**  
+	Phase 2: Assisted with testing and integration
 
 
 ## System Features
