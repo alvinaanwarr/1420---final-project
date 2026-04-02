@@ -1,4 +1,4 @@
-package gui;
+package campusbooking.gui;
 
 import model.User;
 import model.Event;
