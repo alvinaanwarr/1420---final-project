@@ -6,12 +6,14 @@ import service.UserService;
 
 public class UserPanel extends JPanel {
 
-    private JTextField idField       = new JTextField();
-    private JTextField nameField     = new JTextField();
-    private JTextField emailField    = new JTextField();
-    private JTextField searchField   = new JTextField();
+    private JTextField idField        = new JTextField();
+    private JTextField nameField      = new JTextField();
+    private JTextField emailField     = new JTextField();
+    private JTextField searchField    = new JTextField();
     private JComboBox<String> typeBox = new JComboBox<>(new String[]{"Student", "Staff", "Guest"});
-    private JTextArea userList       = new JTextArea();
+    private JComboBox<String> filterTypeBox =
+            new JComboBox<>(new String[]{"All", "Student", "Staff", "Guest"});
+    private JTextArea userList        = new JTextArea();
 
     public UserPanel() { this(new UserService()); }
 
@@ -35,33 +37,20 @@ public class UserPanel extends JPanel {
                 }
                 JOptionPane.showMessageDialog(null, service.addUser(id, name, email, type));
                 idField.setText(""); nameField.setText(""); emailField.setText("");
-
-                StringBuilder sb = new StringBuilder();
-                var results = service.getAllUsers();
-                if (results.isEmpty()) { sb.append("No users found."); }
-                else for (var u : results)
-                    sb.append(u.getUserId()).append(" | ").append(u.getName())
-                            .append(" | ").append(u.getEmail())
-                            .append(" | ").append(u.getUserType()).append("\n");
-                userList.setText(sb.toString());
+                refreshList(service, "", "All");
             });
         }});
         form.add(new JLabel());
-
-        JPanel searchPanel = new JPanel(new GridLayout(1, 2));
+// search features
+        JPanel searchPanel = new JPanel(new GridLayout(1, 3));
         searchPanel.add(searchField);
+        searchPanel.add(filterTypeBox);
         searchPanel.add(new JButton("Search") {{
-            addActionListener(e -> {
-                String q = searchField.getText().trim();
-                var results = q.isBlank() ? service.getAllUsers() : service.search(q);
-                StringBuilder sb = new StringBuilder();
-                if (results.isEmpty()) { sb.append("No users found."); }
-                else for (var u : results)
-                    sb.append(u.getUserId()).append(" | ").append(u.getName())
-                            .append(" | ").append(u.getEmail())
-                            .append(" | ").append(u.getUserType()).append("\n");
-                userList.setText(sb.toString());
-            });
+            addActionListener(e -> refreshList(
+                    service,
+                    searchField.getText().trim(),
+                    (String) filterTypeBox.getSelectedItem()
+            ));
         }});
 
         userList.setEditable(false);
@@ -69,8 +58,19 @@ public class UserPanel extends JPanel {
         add(new JScrollPane(userList), BorderLayout.CENTER);
         add(searchPanel, BorderLayout.SOUTH);
 
+        refreshList(service, "", "All");
+    }
+
+    private void refreshList(UserService service, String query, String typeStr) {
+        var results = query.isBlank() ? service.getAllUsers() : service.search(query);
+
+        if (!typeStr.equals("All")) {
+            results = results.stream()
+                    .filter(u -> u.getUserType().equals(typeStr))
+                    .toList();
+        }
+
         StringBuilder sb = new StringBuilder();
-        var results = service.getAllUsers();
         if (results.isEmpty()) { sb.append("No users found."); }
         else for (var u : results)
             sb.append(u.getUserId()).append(" | ").append(u.getName())
