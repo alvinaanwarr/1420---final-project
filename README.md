@@ -161,7 +161,6 @@ Using IntelliJ IDEA:
             MainFrame.java
             gui/
               BookingPanel.java
-			  BookingSystem.java
               EventPanel.java
               UserPanel.java
               WaitlistPanel.java
