@@ -65,17 +65,17 @@ public class BookingPanel extends JPanel {
         JPanel topForms = new JPanel(new GridLayout(2, 1));
         topForms.add(bookForm);
         topForms.add(cancelForm);
-
+// search features
         JPanel searchPanel = new JPanel(new GridLayout(1, 3));
         searchPanel.add(searchField);
         searchPanel.add(statusFilter);
-        searchPanel.add(new JButton("Search") {{
+        new JButton("Search") {{
             addActionListener(e -> refreshList(
                     bookingService,
                     searchField.getText().trim(),
                     (String) statusFilter.getSelectedItem()
             ));
-        }});
+        }}.add(searchPanel);
 
         resultArea.setEditable(false);
         add(topForms, BorderLayout.NORTH);

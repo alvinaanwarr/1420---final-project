@@ -33,6 +33,7 @@ public class EventPanel extends JPanel {
         }});
         form.add(new JLabel());
 
+// search features
         JPanel searchPanel = new JPanel(new GridLayout(1, 3));
         searchPanel.add(searchField);
         searchPanel.add(filterTypeBox);

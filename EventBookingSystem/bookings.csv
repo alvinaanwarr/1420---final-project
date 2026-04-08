@@ -1,0 +1,2 @@
+bookingId,userId,eventId,createdAt,bookingStatus
+B1,1389972,School,2026-03-31T12:22:45.427880600,CONFIRMED
